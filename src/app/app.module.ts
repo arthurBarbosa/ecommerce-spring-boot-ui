@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { ProdutcListComponent } from './components/produtc-list/produtc-list.component';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -10,9 +11,10 @@ import { ProdutcListComponent } from './components/produtc-list/produtc-list.com
     ProdutcListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
