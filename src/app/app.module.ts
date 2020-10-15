@@ -8,7 +8,7 @@ import { ProductService } from './services/product.service';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 
 const routes: Routes = [
-  {path: 'category/:id', component: ProdutcListComponent},
+  {path: 'category/:id/:name', component: ProdutcListComponent},
   {path: 'category', component: ProdutcListComponent},
   {path: 'products', component: ProdutcListComponent},
   {path: '', redirectTo: '/products', pathMatch: 'full'},
