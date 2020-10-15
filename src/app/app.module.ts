@@ -6,8 +6,10 @@ import { AppComponent } from './app.component';
 import { ProdutcListComponent } from './components/produtc-list/produtc-list.component';
 import { ProductService } from './services/product.service';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
+import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
+  {path: 'search/:keyword', component: ProdutcListComponent},
   {path: 'category/:id/:name', component: ProdutcListComponent},
   {path: 'category', component: ProdutcListComponent},
   {path: 'products', component: ProdutcListComponent},
@@ -19,7 +21,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     ProdutcListComponent,
-    ProductCategoryMenuComponent
+    ProductCategoryMenuComponent,
+    SearchComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

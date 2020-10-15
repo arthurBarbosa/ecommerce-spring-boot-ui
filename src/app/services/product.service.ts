@@ -10,7 +10,6 @@ import { ProductCategory } from '../common/product-category';
 })
 export class ProductService {
  
-
   private baseUrl = 'http://localhost:8080/api/products';
   private categoryUrl = 'http://localhost:8080/api/product-category';
 
@@ -21,9 +20,7 @@ export class ProductService {
     // need to build URL based on category id
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
 
-    return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
-      map(response => response._embedded.products)
-    );
+    return this.getProducts(searchUrl);
   }
 
 
@@ -34,6 +31,19 @@ export class ProductService {
     );
   }
 
+  searchProducts(theKeyWord: string) {
+     // need to build URL based on category id
+     const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyWord}`;
+
+     return this.getProducts(searchUrl);
+  }
+
+
+  private getProducts(searchUrl: string) {
+    return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
+      map(response => response._embedded.products)
+    );
+  }
 }
 
 
