@@ -7,8 +7,10 @@ import { ProdutcListComponent } from './components/produtc-list/produtc-list.com
 import { ProductService } from './services/product.service';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 const routes: Routes = [
+  {path: 'products/:id', component: ProductDetailsComponent},
   {path: 'search/:keyword', component: ProdutcListComponent},
   {path: 'category/:id/:name', component: ProdutcListComponent},
   {path: 'category', component: ProdutcListComponent},
@@ -22,7 +24,8 @@ const routes: Routes = [
     AppComponent,
     ProdutcListComponent,
     ProductCategoryMenuComponent,
-    SearchComponent
+    SearchComponent,
+    ProductDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
