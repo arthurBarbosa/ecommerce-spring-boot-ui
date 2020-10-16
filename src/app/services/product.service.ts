@@ -42,11 +42,22 @@ export class ProductService {
     );
   }
 
-  searchProducts(theKeyWord: string) {
+  searchProducts(theKeyword: string) {
      // need to build URL based on category id
-     const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyWord}`;
+     const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`;
 
      return this.getProducts(searchUrl);
+  }
+
+  searchProductPaginate(thePage:number,
+                            thePageSize: number,
+                            theKeyword: string): Observable<GetResponseProducts> {
+
+  // need to build URL based on category id
+  const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`
+  + `&page=${thePage}&size=${thePageSize}`;
+
+  return this.httpClient.get<GetResponseProducts>(searchUrl);
   }
 
 
