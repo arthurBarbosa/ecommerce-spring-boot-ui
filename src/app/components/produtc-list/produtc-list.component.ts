@@ -104,6 +104,10 @@ export class ProdutcListComponent implements OnInit {
       
   }
 
+  addToCart(theProduct: Product){
+    console.log(`Adding to cart ${theProduct.name}, ${theProduct.unitPrice}`);
+  }
+
   processResult(){
     return data => {
       this.products = data._embedded.products;
