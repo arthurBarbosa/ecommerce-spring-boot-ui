@@ -83,6 +83,7 @@ export class CartService {
       this.computeCartTotals();
     }
   }
+  
   remove(theCartItem: CartItem) {
     
     // get index of item in the array
