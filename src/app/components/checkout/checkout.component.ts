@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Country } from 'src/app/common/country';
 import { AbcodeShopFormService } from 'src/app/services/abcode-shop-form.service';
 
 @Component({
@@ -16,6 +17,9 @@ export class CheckoutComponent implements OnInit {
 
   creditCardYears: number[] = [];
   creditCardMonths: number[] = [];
+
+  countries: Country[] = [];
+
 
   constructor(private formBuilder: FormBuilder,
               private abcodeShopService: AbcodeShopFormService) { }
@@ -72,7 +76,13 @@ export class CheckoutComponent implements OnInit {
       }
     )
 
-
+    // populate countries
+    this.abcodeShopService.getCountries().subscribe(
+      data => {
+        console.log('Retrivied countries: ' + JSON.stringify(data))
+        this.countries = data;
+      }
+    )
 
 
   }

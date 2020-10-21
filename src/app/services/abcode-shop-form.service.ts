@@ -16,13 +16,13 @@ export class AbcodeShopFormService {
   constructor(private httpClient: HttpClient) { }
 
   getCountries(): Observable<Country[]> {
-   
+
     return this.httpClient.get<GetResponseCountries>(this.countriesUrl).pipe(
       map(response => response._embedded.countries)
     );
   }
 
-  getStates(theCountyCode: string): Observable<State[]>{
+  getStates(theCountyCode: string): Observable<State[]> {
 
     // search url
     const searchStatesUrl = `${this.statesUrl}/search/findByCountries?code=${theCountyCode}`;
@@ -70,8 +70,8 @@ interface GetResponseCountries {
   }
 }
 
-interface GetResponseStates{
-  _embedded:{
-    state: State[];
+interface GetResponseStates {
+  _embedded: {
+    states: State[];
   }
 }
