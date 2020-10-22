@@ -25,7 +25,7 @@ export class AbcodeShopFormService {
   getStates(theCountyCode: string): Observable<State[]> {
 
     // search url
-    const searchStatesUrl = `${this.statesUrl}/search/findByCountries?code=${theCountyCode}`;
+    const searchStatesUrl = `${this.statesUrl}/search/findByCountryCode?code=${theCountyCode}`;
 
     return this.httpClient.get<GetResponseStates>(searchStatesUrl).pipe(
       map(response => response._embedded.states)
