@@ -157,7 +157,7 @@
 
                                 <div *ngIf="shippingAddressZipCode.invalid && (shippingAddressZipCode.dirty || shippingAddressZipCode.touched)" class="alert alert-danger mt-1">
                                     <div *ngIf="shippingAddressZipCode.errors.required || shippingAddressZipCode.errors.notOnlyWhitespace">
-                                        Zipcode is required
+                                        Zip code is required
                                     </div>
                                 </div>
 
@@ -187,6 +187,7 @@
                                         {{ country.name}}
                                     </option>
                                 </select>
+                                
                             </div>
                         </div>
                     </div>
