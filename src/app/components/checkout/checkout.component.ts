@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, FormsModule } from '@angular/forms';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
 import { AbcodeShopFormService } from 'src/app/services/abcode-shop-form.service';
@@ -60,11 +60,21 @@ export class CheckoutComponent implements OnInit {
                                 AbcodeShopValidators.notOnlyWhitespace]),
       }),
       billingAddress: this.formBuilder.group({
-        street: [''],
-        city: [''],
-        state: [''],
-        country: [''],
-        zipCode: [''],
+        street: new FormControl('', 
+                                [Validators.required,
+                                Validators.minLength(2)]),
+        city: new FormControl('', 
+                              [Validators.required,
+                              Validators.minLength(2)]),
+        state: new FormControl('',
+                              [Validators.required,
+                              Validators.minLength(2)]),
+        country: new FormControl('', [
+                                Validators.required,
+                                Validators.minLength(2)]),
+        zipCode: new FormControl('', [
+                                Validators.required,
+                                Validators.minLength(3)]),
       }),
       creditCard: this.formBuilder.group({
         cardType: [''],
