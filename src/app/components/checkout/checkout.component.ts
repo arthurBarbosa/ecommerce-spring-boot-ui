@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators, FormsModule } from '@a
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
 import { AbcodeShopFormService } from 'src/app/services/abcode-shop-form.service';
+import { CartService } from 'src/app/services/cart.service';
 import { AbcodeShopValidators } from 'src/app/validators/abcode-shop-validators';
 
 @Component({
@@ -27,9 +28,13 @@ export class CheckoutComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder,
-    private abcodeShopService: AbcodeShopFormService) { }
+              private abcodeShopService: AbcodeShopFormService,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
+
+    this.reviewCartDetails();
+
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: new FormControl('',
@@ -124,6 +129,20 @@ export class CheckoutComponent implements OnInit {
     )
 
 
+  }
+
+  reviewCartDetails() {
+
+    // subscribe to cartService.totalQuantity
+    this.cartService.totalQuantity.subscribe(
+      totalQuantity => this.totalQuantity = totalQuantity
+    );
+    
+    // subscribe to cartService.totalPrice
+    this.cartService.totalPrice.subscribe(
+      totalPrice => this.totalPrice = totalPrice
+    );
+   
   }
 
   get firstName() { return this.checkoutFormGroup.get('customer.firstName'); }
