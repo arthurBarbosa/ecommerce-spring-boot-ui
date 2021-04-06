@@ -15,6 +15,7 @@ import { CarStatusComponent } from './components/car-status/car-status.component
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { LoginComponent } from './components/login/login.component';
+import { LoginStatusComponent } from './components/login-status/login-status.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,8 @@ const routes: Routes = [
     CarStatusComponent,
     CartDetailsComponent,
     CheckoutComponent,
-    LoginComponent
+    LoginComponent,
+    LoginStatusComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
