@@ -21,13 +21,15 @@
     "@angular/router": "~10.1.2",
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
+    "@okta/okta-angular": "^3.0.1",
+    "@okta/okta-signin-widget": "^5.5.1",
     "bootstrap": "^4.4.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1001.2",
+    "@angular-devkit/build-angular": "^0.1102.7",
     "@angular/cli": "^10.1.7",
     "@angular/compiler-cli": "~10.1.2",
     "@angular/localize": "^10.1.5",
