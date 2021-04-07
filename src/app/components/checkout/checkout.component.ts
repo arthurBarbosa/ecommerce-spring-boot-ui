@@ -33,6 +33,8 @@ export class CheckoutComponent implements OnInit {
   shippingAddressStates: State[] = [];
   billingAddressStates: State[] = [];
 
+  storage: Storage = sessionStorage;
+
 
   constructor(private formBuilder: FormBuilder,
     private abcodeShopService: AbcodeShopFormService,
@@ -44,6 +46,9 @@ export class CheckoutComponent implements OnInit {
 
     this.reviewCartDetails();
 
+    // read the user's email address from address from browser storage
+    const theEmail = JSON.parse(this.storage.getItem('userEmail'));
+
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: new FormControl('',
@@ -54,7 +59,7 @@ export class CheckoutComponent implements OnInit {
           [Validators.required,
           Validators.minLength(2),
           AbcodeShopValidators.notOnlyWhitespace]),
-        email: new FormControl('',
+        email: new FormControl(theEmail,
           [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
       }),
       shippingAddress: this.formBuilder.group({
@@ -82,7 +87,7 @@ export class CheckoutComponent implements OnInit {
           [Validators.required,
           Validators.minLength(2),
           AbcodeShopValidators.notOnlyWhitespace]),
-        state: new FormControl('',[Validators.required]),
+        state: new FormControl('', [Validators.required]),
         country: new FormControl('', [
           Validators.required,
           Validators.minLength(2),
@@ -176,7 +181,7 @@ export class CheckoutComponent implements OnInit {
 
     if (event.target.checked) {
       this.checkoutFormGroup.controls.billingAddress
-            .setValue(this.checkoutFormGroup.controls.shippingAddress.value);
+        .setValue(this.checkoutFormGroup.controls.shippingAddress.value);
 
       // bug fix for states
       this.billingAddressStates = this.shippingAddressStates;
@@ -188,7 +193,7 @@ export class CheckoutComponent implements OnInit {
       // bug fix for states
       this.billingAddressStates = [];
     }
-    
+
   }
 
   onSubmit() {
@@ -245,28 +250,28 @@ export class CheckoutComponent implements OnInit {
 
     // call REST API via the CheckoutService
     this.checkoutService.placeOrder(purchase).subscribe({
-        next: response => {
-          alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`)
+      next: response => {
+        alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`)
 
-          // reset cart
-          this.resetCart();
-        },
-        error: err => {
-          alert(`There was an error: ${err.message}`)
-        }
-
+        // reset cart
+        this.resetCart();
+      },
+      error: err => {
+        alert(`There was an error: ${err.message}`)
       }
+
+    }
     )
 
   }
 
 
   resetCart() {
-    // reset cart data 
+    // reset cart data
     this.cartService.cartItems = [];
     this.cartService.totalPrice.next(0);
     this.cartService.totalQuantity.next(0)
-    
+
     // reset the form
     this.checkoutFormGroup.reset();
 
