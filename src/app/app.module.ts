@@ -26,6 +26,7 @@ import {
 
 import myAppConfig from './config/my-app-config';
 import { MemberPageComponent } from './components/member-page/member-page.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 
 const oktaConfig = Object.assign({
   onAuthRequired: (oktaAuth, injector) => {
@@ -64,7 +65,8 @@ const routes: Routes = [
     CheckoutComponent,
     LoginComponent,
     LoginStatusComponent,
-    MemberPageComponent
+    MemberPageComponent,
+    OrderHistoryComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
